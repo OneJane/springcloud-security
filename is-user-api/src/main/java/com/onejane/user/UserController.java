@@ -36,6 +36,12 @@ public class UserController {
     }
 
 
+    /**
+     * 127.0.0.1:8888/users/list?name='or 1=1 or name='  sql注入攻击查询所有用户信息
+     * sql拼接存在sql注入，通过?进行替换用preparestatement预编译参数绑定
+     * @param name
+     * @return
+     */
     @GetMapping("/list")
     public List jdbcQuery(String name){
         String sql = "select id,name from user where name = '"+name+"'";
@@ -54,13 +60,13 @@ public class UserController {
      * 127.0.0.1:8888/users/create
      * Authorization Basic Auth  数据库中yx1权限r yx2权限rw
      *         yx1/123456  401 forbidden
-     *         yx2/123456  401 forbidden
+     *         yx2/123456  200
      * {
      * 	"name":"onejane",
      * 	"username":"onejane",
      * 	"password":"123456"
      * }
-     * @param user
+     * @param user  @RequestBody JSON自动转成对象
      * @return
      */
     @PostMapping("/create")

@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Data
-@Entity
+@Entity  // 绑定表
 public class User {
 
     @Id

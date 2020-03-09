@@ -14,6 +14,11 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * jpa解决sql注入
+     * @param name
+     * @return
+     */
     public List<UserInfo> query(String name) {
         List<UserInfo> infoList = new ArrayList<>();
         List<User> userList  = userRepository.findByName(name);

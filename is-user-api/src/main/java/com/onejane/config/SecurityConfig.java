@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.Optional;
 
 @Configuration
-@EnableJpaAuditing
+@EnableJpaAuditing  // 开启审计@CreateDate @CreatedBy @LastModifiedDate @LastModifiedBy
 public class SecurityConfig implements WebMvcConfigurer {
 
     @Autowired
@@ -30,6 +30,7 @@ public class SecurityConfig implements WebMvcConfigurer {
         registry.addInterceptor(aclInterceptor);
     }
 
+    // 获取用户名
     @Bean
     public AuditorAware<String> auditorAware(){
         return new AuditorAware<String>() {
