@@ -1,6 +1,7 @@
 package com.onejane.user;
 
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
@@ -22,6 +23,8 @@ public class User {
 
     private String password;
 
+    //权限 自动在数据库生成字段，在数据库配置r rw相关权限
+    private String permissions;
 
     public UserInfo buildInfo(){
         UserInfo info = new UserInfo();
@@ -29,4 +32,13 @@ public class User {
         return info;
     }
 
+    public boolean hasPermission(String method) {
+        boolean result = true;
+        if(StringUtils.equalsAnyIgnoreCase("get",method)){
+            result = StringUtils.contains(this.permissions,"r");
+        }else{
+            result = StringUtils.contains(this.permissions,"w");
+        }
+        return result;
+    }
 }

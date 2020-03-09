@@ -29,7 +29,7 @@ public class BaseicAuthecationFilter extends OncePerRequestFilter {
 
 
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
+        System.out.println(2);
         String authHeader = request.getHeader("Authorization");
         if(StringUtils.isNotBlank(authHeader)){
             String token64 = StringUtils.substringAfter(authHeader,"Basic ");

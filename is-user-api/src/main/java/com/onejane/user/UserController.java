@@ -50,6 +50,19 @@ public class UserController {
     }
 
 
+    /**
+     * 127.0.0.1:8888/users/create
+     * Authorization Basic Auth  数据库中yx1权限r yx2权限rw
+     *         yx1/123456  401 forbidden
+     *         yx2/123456  401 forbidden
+     * {
+     * 	"name":"onejane",
+     * 	"username":"onejane",
+     * 	"password":"123456"
+     * }
+     * @param user
+     * @return
+     */
     @PostMapping("/create")
     public UserInfo create(@RequestBody @Validated UserInfo user){
         return userService.create(user);

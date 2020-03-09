@@ -1,5 +1,6 @@
 package com.onejane.config;
 
+import com.onejane.filter.AclInterceptor;
 import com.onejane.filter.AuditLogInterceptor;
 import com.onejane.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,12 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Autowired
     private AuditLogInterceptor auditLogInterceptor;
 
+    @Autowired
+    private AclInterceptor aclInterceptor;
 
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(auditLogInterceptor);
+        registry.addInterceptor(aclInterceptor);
     }
 
     @Bean
