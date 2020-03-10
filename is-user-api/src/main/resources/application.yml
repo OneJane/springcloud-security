@@ -1,5 +1,10 @@
 server:
   port: 8888
+  # keytool -genkeypair -alias jojo -keyalg RSA -keystore C:/jojo.key
+#  ssl:
+#    key-store: classpath:jojo.key
+#    key-store-password: 123456
+#    key-password: 123456
 spring:
   application:
     name: user-api
