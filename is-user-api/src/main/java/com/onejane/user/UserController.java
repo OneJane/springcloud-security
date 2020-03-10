@@ -85,8 +85,9 @@ public class UserController {
     }
 
     /**
+     * 身份认证
      * http://localhost:8888/users/get/2  快速请求提示 too many requests!!!,可以根据用户等级限流
-     * Authorization Basic Auth yx2/123456
+     * Authorization Basic Auth yx2/123456 自动在Header中设置Authorization的值为Basic eXgyOjEyMzQ1Ng==
      * @param id
      * @param request
      * @return

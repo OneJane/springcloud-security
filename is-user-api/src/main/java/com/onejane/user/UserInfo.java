@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * 封装服务请求和响应
+ */
 @Data
 public class UserInfo {
 

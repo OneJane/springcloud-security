@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * 认证
+ * 身份认证
  */
 @Component
 @Order(2)
@@ -33,6 +33,7 @@ public class BaseicAuthecationFilter extends OncePerRequestFilter {
         String authHeader = request.getHeader("Authorization");
         if(StringUtils.isNotBlank(authHeader)){
             String token64 = StringUtils.substringAfter(authHeader,"Basic ");
+            // 解析获取明文
             String token = new String(Base64Utils.decodeFromString(token64));
             String[] items = StringUtils.splitByWholeSeparatorPreserveAllTokens(token,":");
             String username = items[0];
