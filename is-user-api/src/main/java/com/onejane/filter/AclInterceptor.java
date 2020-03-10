@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @Order(4)
 public class AclInterceptor extends HandlerInterceptorAdapter {
 
+    // 过滤登录接口
     private String[] permitUrls = new String[]{"/users/login"};
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

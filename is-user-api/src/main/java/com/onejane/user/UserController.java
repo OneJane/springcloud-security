@@ -19,6 +19,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // 登录授权
     @GetMapping("/login")
     public void login(@Validated UserInfo info,HttpServletRequest request){
         User user  = userService.login(info);
