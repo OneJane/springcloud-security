@@ -84,6 +84,13 @@ public class UserController {
         userService.delete(id);
     }
 
+    /**
+     * http://localhost:8888/users/get/2  快速请求提示 too many requests!!!,可以根据用户等级限流
+     * Authorization Basic Auth yx2/123456
+     * @param id
+     * @param request
+     * @return
+     */
     @GetMapping("/get/{id}")
     public UserInfo get(@PathVariable Long id, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
