@@ -16,7 +16,7 @@ import java.io.IOException;
  * 流控过滤器 限流 OncePerRequestFilter保证过滤器里的逻辑在一个请求里只会被执行一次
  */
 @Component
-@Order(1)
+@Order(1)  // order设置过滤顺序
 public class RateLimitFilter extends OncePerRequestFilter {
 
     //每秒的请求数为1，1秒一个请求。

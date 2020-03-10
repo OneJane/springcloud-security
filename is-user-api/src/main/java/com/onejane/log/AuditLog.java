@@ -10,9 +10,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * 记录日志信息
+ */
 @Entity
 @Data
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class) // JPA自动支持审计
 public class AuditLog {
 
     /**

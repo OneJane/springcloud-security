@@ -9,9 +9,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+// 请求处理失败，不走spring默认的处理
 @ControllerAdvice
 public class ErrorHandler {
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // 任何异常以500抛出
     @ExceptionHandler(Exception.class)
     public Map<String,Object> handle(Exception ex){
         Map<String,Object> info=new HashMap<>();
