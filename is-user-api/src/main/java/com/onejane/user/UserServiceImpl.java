@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService{
     public UserInfo create(UserInfo info) {
         User user = new User();
         BeanUtils.copyProperties(info,user);
+        // 数据加密 32768,8,1控制加密的位数，cpu使用率
         user.setPassword(SCryptUtil.scrypt(user.getPassword(),32768,8,1));
         userRepository.save(user);
         info.setId(user.getId());
