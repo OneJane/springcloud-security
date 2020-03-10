@@ -14,7 +14,7 @@ public class UserInfo {
 
     private String name;
 
-    @NotBlank(message = "用户名不能为空")
+    @NotBlank(message = "用户名不能为空") // 参数 数据校验
     private String username;
 
     @NotBlank(message = "密码不能为空")

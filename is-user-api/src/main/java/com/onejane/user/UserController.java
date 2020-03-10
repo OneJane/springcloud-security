@@ -66,6 +66,7 @@ public class UserController {
      * 	"username":"onejane",
      * 	"password":"123456"
      * }
+     * @Validated 数据校验
      * @param user  @RequestBody JSON自动转成对象
      * @return
      */

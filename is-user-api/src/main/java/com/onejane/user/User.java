@@ -17,8 +17,8 @@ public class User {
 
     private String name;
 
-    @NotBlank(message = "用户名不能为Null")
-    @Column(unique = true)
+    @NotBlank(message = "用户名不能为Null") // 数据库 数据校验,sql执行之前校验，应用层面
+    @Column(unique = true,nullable = true)  // 数据校验唯一，建立数据库层面校验
     private String username;
 
     private String password;
