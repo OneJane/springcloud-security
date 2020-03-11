@@ -37,7 +37,9 @@ public class SecurityConfig implements WebMvcConfigurer {
         return new AuditorAware<String>() {
             @Override
             public Optional<String> getCurrentAuditor() {
+                // 拿到request
                 ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+                // 拿到session
                 User user = (User) servletRequestAttributes.getRequest().getSession().getAttribute("user");
                 String username = "";
                 if(user!=null){

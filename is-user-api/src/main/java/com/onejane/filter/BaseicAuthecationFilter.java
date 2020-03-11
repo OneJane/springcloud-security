@@ -40,6 +40,7 @@ public class BaseicAuthecationFilter extends OncePerRequestFilter {
             String password = items[1];
             User user = userRepository.findByUsername(username);
             if(user!=null && SCryptUtil.check(password,user.getPassword())){
+                // 支持http basic 访问
                 request.getSession().setAttribute("user",user);
                 request.getSession().setAttribute("temp","yes");
             }
@@ -49,6 +50,7 @@ public class BaseicAuthecationFilter extends OncePerRequestFilter {
         try{
             filterChain.doFilter(request,response);
         }finally {
+            // 支持登录方式访问
             HttpSession session = request.getSession();
             if(session.getAttribute("temp")!=null){
                 session.invalidate();
