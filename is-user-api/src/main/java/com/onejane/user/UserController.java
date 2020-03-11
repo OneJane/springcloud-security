@@ -23,10 +23,15 @@ public class UserController {
     @GetMapping("/login")
     public void login(@Validated UserInfo info,HttpServletRequest request){
         User user  = userService.login(info);
+        // 找不到session时不会创建一个新session，而是返回空，如果找到就返回session
         HttpSession session = request.getSession(false);
+        // 每次登录成功后当前session里的信息和登录之前的session不是一个session，解决session cookie攻击
         if(session!=null){
             session.invalidate();
         }
+        // request.getSession根据请求里的cookie里的jsessionid从服务器中找session
+        // 如果找到，返回存在的session，如果没找到创建一个新的session并返回，攻击者拿到用户的session
+        // Response Headers中Set-Cookie: jsessionid基于token登录返回的token与服务器session挂钩，path和域名决定路径携带cookie，Secure表示当前的cookie在Https时才能使用发请求，HttpOnly当前请求只能被浏览器自身发送，不能通过js读到cookie
         request.getSession(true).setAttribute("user",user);
 
     }
