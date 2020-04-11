@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * 身份认证
+ * 身份认证 支持两种认证方式basic session
  */
 @Component
 @Order(2)
@@ -50,7 +50,7 @@ public class BaseicAuthecationFilter extends OncePerRequestFilter {
         try{
             filterChain.doFilter(request,response);
         }finally {
-            // 支持登录方式访问
+            // 支持登录方式访 问
             HttpSession session = request.getSession();
             if(session.getAttribute("temp")!=null){
                 session.invalidate();

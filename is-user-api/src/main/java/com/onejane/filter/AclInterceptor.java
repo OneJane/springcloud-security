@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 访问控制
+ * 401 请求需要身份认证 无身份认证信息，身份认证信息有误，可在请求头添加身份证明避免401
+ * 403 身份认证成功， 请求需要权限，请求做任何修改403都不会过去，除非被授权
  */
 @Component // 所有filter都在intercepter之前执行
 @Order(4)

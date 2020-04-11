@@ -23,7 +23,8 @@ public class UserController {
     @GetMapping("/login")
     public void login(@Validated UserInfo info,HttpServletRequest request){
         User user  = userService.login(info);
-        // 找不到session时不会创建一个新session，而是返回空，如果找到就返回session
+        // 找不到session时不会创建一个新session，而是返回空，如果找到就返回session，request.getSession将自动创建sessionId和Set-Cookies返回给Response Headers
+        // 再次请求其他API时浏览器会自动带上Cookie
         HttpSession session = request.getSession(false);
         // 每次登录成功后当前session里的信息和登录之前的session不是一个session，解决session cookie攻击
         if(session!=null){
@@ -44,7 +45,7 @@ public class UserController {
 
     /**
      * 127.0.0.1:8888/users/list?name='or 1=1 or name='  sql注入攻击查询所有用户信息
-     * sql拼接存在sql注入，通过?进行替换用preparestatement预编译参数绑定
+     * sql拼接存在sql注入，通过?进行替换用preparestatement预编译参数绑定，mybatis的#{}自动预编译，而${}注入原始字符串导致sql注入
      * @param name
      * @return
      */
