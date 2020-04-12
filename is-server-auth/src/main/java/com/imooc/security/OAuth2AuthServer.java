@@ -22,6 +22,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 数据库oauth_client_details
  * orderApp	order-server	$2a$10$delk3h0IiHmP3LYrB8qRge.KMGu7Tj8MM8B0RRcF3Qz9QBwQRHZvy	read,write	password			3600
  * orderService	order-server	$2a$10$z1Di6LqPkcNJTjA0Ks5.ne6q2dE.jSIelJQB4eXsjSiN41uBFtXLK	read	password			3600	30	{"systemInfo":"Atlas System"}	true
+ *
+ * 以上token是以jwt方式实现，注释tokenStore得到
+ * {
+ *     "access_token": "460ed432-bf8e-43d0-9cab-b1bb174225ba",
+ *     "token_type": "bearer",
+ *     "expires_in": 2659,
+ *     "scope": "read write"
+ * }
+ *
  */
 @SpringBootApplication
 public class OAuth2AuthServer {

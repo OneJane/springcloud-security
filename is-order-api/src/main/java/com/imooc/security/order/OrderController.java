@@ -33,6 +33,11 @@ public class OrderController {
      * http://localhost:8081/orders
      * Bearer Token:eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsib3JkZXItc2VydmVyIl0sInVzZXJfbmFtZSI6Inl4MSIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1ODY2NjEzODcsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiODYxNzM1MjEtODI5Yy00YmNkLWJhZGUtZDM5YWYxMTM1NTIzIiwiY2xpZW50X2lkIjoib3JkZXJBcHAifQ.Nlqzl4zQQpzpoQh6ev0ROg1857YlQ4rwnsc9XaffyOZ4iR0xA29NBztjwWIk5A8Qz48Cy_qhNd4PoucIbZv0gFD66KUNIBnD4W3IkAHWOzsm_qtozsseArA_4HJkGe0YW1mfJswd6BExyPzU79vrmSpx6OtjYn6GrpXFoj7qoZvFOHg0u05PJkaJeCdoxqHliE9sKVKzCQUhkpYB5S8yZSfRWvL-n92ZEaqy6PBtHPhrnM9uB5Kry3zXeYye9l9ULl5f16FBP7bXpKLyFfJaXUYwzRbIguzdAUKVIawxp45v-knyYgbDKtcTPVIGlXDwulp-bmR5VUmXlrsa7CL2FA
      * 控制台将打印yx1,来自OAuth2的获取token时的username
+     *
+     * 以上jwt形式获取token，OAuth2 默认使用Header,
+     * Authorization:bearer 460ed432-bf8e-43d0-9cab-b1bb174225ba
+     * HTTP Basic 默认使用Header
+     * Authorization:basic 460ed432-bf8e-43d0-9cab-b1bb174225ba
      * @param info
      * @param user
      * @return

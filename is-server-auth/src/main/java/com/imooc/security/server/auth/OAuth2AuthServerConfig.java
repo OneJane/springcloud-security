@@ -50,6 +50,7 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
     @Bean
     public TokenStore tokenStore(){
         return new JdbcTokenStore(dataSource);
+//        return new JwtTokenStore(jwtTokenEnhancer());
     }
     //处理用户是否合法
 
@@ -62,7 +63,7 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)// add get method
-//                .userDetailsService(userDetailsService)
+                .userDetailsService(userDetailsService)
                 .tokenStore(tokenStore())
 //                .tokenEnhancer(jwtTokenEnhancer())
                 .authenticationManager(authenticationManager);
