@@ -2,10 +2,8 @@ package com.imooc.security.order;
 
 import com.imooc.security.server.resource.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,8 +14,8 @@ public class OrderController {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    @Autowired
-    private OAuth2RestTemplate oAuth2RestTemplate;
+//    @Autowired
+//    private OAuth2RestTemplate oAuth2RestTemplate;
 
     /**
      * http://localhost:8081/orders

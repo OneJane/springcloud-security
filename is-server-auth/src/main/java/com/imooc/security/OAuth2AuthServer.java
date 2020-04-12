@@ -18,6 +18,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *     "scope": "read write",
  *     "jti": "3b2557f5-ff00-45be-8ecb-35430935c214"
  * }
+ *
+ * 数据库oauth_client_details
+ * orderApp	order-server	$2a$10$delk3h0IiHmP3LYrB8qRge.KMGu7Tj8MM8B0RRcF3Qz9QBwQRHZvy	read,write	password			3600
+ * orderService	order-server	$2a$10$z1Di6LqPkcNJTjA0Ks5.ne6q2dE.jSIelJQB4eXsjSiN41uBFtXLK	read	password			3600	30	{"systemInfo":"Atlas System"}	true
  */
 @SpringBootApplication
 public class OAuth2AuthServer {

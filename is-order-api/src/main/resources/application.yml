@@ -4,11 +4,11 @@ spring:
 server:
   port: 8081
 
-security:
-  oauth2:
-    resource:
-      jwt:
-        key-uri: http://10.33.72.18:8090/oauth/token_key
-    client:
-      client-id: orderService
-      client-secret: 123456
+#security:
+#  oauth2:
+#    resource:
+#      jwt:
+#        key-uri: http://10.33.72.18:8090/oauth/token_key
+#    client:
+#      client-id: orderService
+#      client-secret: 123456
