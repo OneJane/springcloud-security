@@ -1,0 +1,16 @@
+server:
+  port: 8090
+  servlet:
+    session:
+      timeout: 30
+spring:
+  application:
+    name: auth-server
+  datasource:
+    url: jdbc:mysql://10.33.72.81:3306/imooc-security?characterEncoding=utf8&Unicode=true&useSSL=false&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
