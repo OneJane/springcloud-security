@@ -1,9 +1,13 @@
-package com.imooc.security;
+/**
+ * 
+ */
+package com.imooc.security.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * TokenEndpoint
  * POST http://localhost:8090/oauth/token
  * Authorization Basic username:orderApp password:123456
  * username:yx1
@@ -34,7 +38,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class OAuth2AuthServer {
-    public static void main(String[] args) {
-        SpringApplication.run(OAuth2AuthServer.class,args);
-    }
+
+	public static void main(String[] args) {
+		SpringApplication.run(OAuth2AuthServer.class, args);
+	}
 }

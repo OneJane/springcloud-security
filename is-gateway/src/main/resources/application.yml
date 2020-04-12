@@ -1,13 +1,59 @@
 zuul:
   routes:
+    #    user:
+    #      url: http://localhost:9090
     token:
-      url: http://10.33.72.18:8090
+      url: http://localhost:9090
     order:
-      url: http://10.33.72.18:8081
+      url: http://localhost:9080
   sensitive-headers:
+  ratelimit:
+    enabled: true
+    #    repository: REDIS
+    repository: JPA
+    default-policy-list:
+      - limit: 3
+        quota: 1
+        refresh-interval: 3
+        type:
+          #          - user
+          #          - role
+          # only do low level limit
+          - url
+          - httpmethod
+#   /token request need to follow
+#    policy-list:
+#      token:
+#      - limit: 2
+#      quota: 1
+#      refresh-interval: 3
+#      type:
+#        - url
+#        - httpmethod
 
-#        type:
-#          - url
-#          - httpmethod
+spring:
+  application:
+    name: gateway-server
+
+  #数据库连接配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    url: jdbc:mysql://106.54.194.33:3306/authdb?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://10.33.72.81:3306/imooc-security?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  jpa:
+    generate-ddl: true
+    show-sql: true
+
 server:
   port: 9070
+
+#security:
+#  oauth2:
+#    client:
+#      client-id: gateway
+#      client-secret: 123456
+#    resource:
+#      jwt:
+#        key-uri: http://auth.imooc.com:9090/oauth/token_key

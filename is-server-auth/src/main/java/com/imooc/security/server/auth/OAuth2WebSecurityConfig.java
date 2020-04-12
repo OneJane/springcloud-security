@@ -14,10 +14,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 
 @Configuration
 @EnableWebSecurity
-public class OAth2WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    private LogoutSuccessHandler logoutSuccessHandler;
+public class OAuth2WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      *  里面只有一个方法叫做loadUserByUserName。
@@ -29,49 +26,40 @@ public class OAth2WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+	@Autowired
+	private LogoutSuccessHandler logoutSuccessHandler;
+	
+    // encrypt password
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    /**
-     * 构建AuthenticationManager
-     * @param auth
-     * @throws Exception
-     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    	// get user id and password from input
         auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+        // encrypt password and compare password
+            .passwordEncoder(passwordEncoder());
     }
 
-    /**
-     * 暴露AuthenticationManager成bean
-     * @return
-     * @throws Exception
-     */
+    // validate userid and pw
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().
-                anyRequest().
-                authenticated().
-                and().
-                formLogin().
-//                loginPage()   这里可以改造，可以自己指定登陆的页面，这样就是自己自定义登陆的页面
-                and().
-                httpBasic().
-                and().
-                logout().logoutSuccessHandler(logoutSuccessHandler);
-    }
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/oauth/check_token");
-//    }
+    
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+		.authorizeRequests()
+			.anyRequest().authenticated()
+			.and()
+//			.formLogin().loginPage(loginPage).and()
+		.formLogin().and()
+		.httpBasic().and()
+		.logout()
+			.logoutSuccessHandler(logoutSuccessHandler);
+	}
 }

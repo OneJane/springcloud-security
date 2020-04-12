@@ -1,8 +1,5 @@
-spring:
-  application:
-    name: order-api
 server:
-  port: 8081
+  port: 9080
 
 #security:
 #  oauth2:
