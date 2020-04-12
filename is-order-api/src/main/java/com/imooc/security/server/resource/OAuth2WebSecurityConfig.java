@@ -1,13 +1,14 @@
 package com.imooc.security.server.resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationManager;
-import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
-import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.security.oauth2.provider.token.*;
 
 /**
  * @program: springcloudsecurity
@@ -18,6 +19,9 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 @Configuration
 @EnableWebSecurity
 public class OAuth2WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserDetailsService userDetailsService;
     /**
      * 验证token的服务
      * @return
@@ -28,7 +32,16 @@ public class OAuth2WebSecurityConfig extends WebSecurityConfigurerAdapter {
         tokenServices.setClientId("orderService");
         tokenServices.setClientSecret("123456");
         tokenServices.setCheckTokenEndpointUrl("http://10.33.72.18:8090/oauth/check_token");
+        tokenServices.setAccessTokenConverter(getAccessTokenConverter()); //setAccessTokenConverter 令牌转换成用户的信息
         return tokenServices;
+    }
+
+    private AccessTokenConverter getAccessTokenConverter() {
+        DefaultAccessTokenConverter accessTokenConverter = new DefaultAccessTokenConverter();
+        DefaultUserAuthenticationConverter userTokenConverter = new DefaultUserAuthenticationConverter();
+        userTokenConverter.setUserDetailsService(userDetailsService);
+        accessTokenConverter.setUserTokenConverter(userTokenConverter);
+        return accessTokenConverter;
     }
 
     @Bean
