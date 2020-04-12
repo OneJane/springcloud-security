@@ -1,0 +1,13 @@
+zuul:
+  routes:
+    token:
+      url: http://10.33.72.18:8090
+    order:
+      url: http://10.33.72.18:8081
+  sensitive-headers:
+
+#        type:
+#          - url
+#          - httpmethod
+server:
+  port: 9070
